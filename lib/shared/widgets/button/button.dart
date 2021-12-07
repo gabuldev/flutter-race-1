@@ -6,9 +6,11 @@ enum ButtonType { fill, outline, none }
 class Button extends StatelessWidget {
   final String label;
   final ButtonType type;
+  final Function() onTap;
   const Button({
     Key? key,
     required this.label,
+    required this.onTap,
     this.type = ButtonType.fill,
   }) : super(key: key);
 
@@ -49,9 +51,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        print("CLICK");
-      },
+      onTap: onTap,
       child: Container(
         height: 58,
         width: double.maxFinite,
