@@ -68,4 +68,26 @@ class SupabaseDatabase implements AppDatabase {
       throw Exception("Não foi possível buscar o usuário");
     }
   }
+
+  @override
+  Future<bool> create(
+      {required String table, required Map<String, dynamic> data}) async {
+    final response = await client.from(table).insert(data).execute();
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+    return true;
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> getAll(String table) async {
+    final response =
+        await client.from(table).select("*").order("created").execute();
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+    return (response.data as List<dynamic>)
+        .map((e) => e as Map<String, dynamic>)
+        .toList();
+  }
 }

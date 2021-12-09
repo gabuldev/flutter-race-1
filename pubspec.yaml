@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^2.1.0
   validators: ^3.0.0
   supabase: ^0.2.10
+  font_awesome_flutter: ^9.2.0
+  flutter_multi_formatter: ^2.4.4
 
 dev_dependencies:
   flutter_test:
